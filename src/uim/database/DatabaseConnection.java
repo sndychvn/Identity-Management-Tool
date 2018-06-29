@@ -7,7 +7,7 @@ import java.sql.PreparedStatement;
 
 public class DatabaseConnection 
 {
-	public static void main(String[] args) throws Exception 
+	/**public static void main(String[] args) throws Exception 
 	{
 		final Connection connection = getConnection();
 		final PreparedStatement pstmt = connection.prepareStatement("INSERT INTO IDENTITIES (IDENTITY_USERNAME, IDENTITY_USERID, IDENTITY_EMAILID,IDENTITY_COUNTRY,IDENTITY_DATEOFBIRTH) VALUES (?, ?, ?, ?, ?)");
@@ -21,7 +21,7 @@ public class DatabaseConnection
 		connection.close();
 	}
 	
-			
+	**/		
 	private static Connection getConnection() throws SQLException
 	{
 		final String url = "jdbc:derby://localhost:1527/testInstance;create=true";
