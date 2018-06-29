@@ -4,21 +4,21 @@ import java.util.Map;
 
 public class InputParameters 
 {
-private String UserName;
-private String UserID;
-private String DateofBirth;
-private String EmailID;
-private String Country;
-private Map<String, String> parameters;
-
-public InputParameters(String UserName, String UserID, String DateofBirth, String EmailID, String Country)
-{
-	this.UserName = UserName;
-	this.UserID = UserID;
-	this.DateofBirth = DateofBirth;
-	this.EmailID = EmailID;
-	this.EmailID = EmailID;
-}
+	private String UserName;
+	private String UserID;
+	private String DateofBirth;
+	private String EmailID;
+	private String Country;
+	private Map<String, String> parameters;
+	
+	public InputParameters(String UserName, String UserID, String DateofBirth, String EmailID, String Country)
+	{
+		this.UserName = UserName;
+		this.UserID = UserID;
+		this.DateofBirth = DateofBirth;
+		this.EmailID = EmailID;
+		this.EmailID = EmailID;
+	}
 
 	/**#public InputParameters()
 	#{
