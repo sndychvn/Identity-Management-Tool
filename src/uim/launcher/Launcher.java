@@ -5,6 +5,11 @@ import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.Scanner;
 
+import uim.operation.CreateUserIdentity;
+import uim.operation.DeleteUserIdentity;
+import uim.operation.ReadUserIdentity;
+import uim.operation.UpdateUserIdentity;
+
 public class Launcher 
 {
 	System.out.println("Welcome!");
@@ -22,11 +27,13 @@ public class Launcher
 	String UserOption;
 	do
 	{
-		System.out.println("Please select the activity you need to perform:/n (Choose 1 / 2 / 3 /4 ");
+		System.out.println("Please select the activity you need to perform: ");
+		System.out.println("Choose: 1 2 3 4 5 ");
 		System.out.println("1. Create a User Identity");
-		System.out.println("2. Modify an existing User Identity");
-		System.out.println("3. Delete an existing User Identity");
-		System.out.println("4. Exit from the tool");
+		System.out.println("2. Read an existing User Identity");
+		System.out.println("3. Modify an existing User Identity");
+		System.out.println("4. Delete an existing User Identity");
+		System.out.println("5. Delete an existing User from the tool");
 		UserOption = scanner.nextLine();
 		
 		if(UserOption.equals("1"))
@@ -39,9 +46,13 @@ public class Launcher
 		}
 		else if(UserOption.equals("3"))
 		{
-			DeleteUserIdentity.execute(scanner);
+			ReadUserIdentity.execute(scanner);
 		}
 		else if(UserOption.equals("4"))
+		{
+			DeleteUserIdentity.execute(scanner);
+		}
+		else if(UserOption.equals("5"))
 		{
 			//need to write db code
 		}
@@ -52,7 +63,7 @@ public class Launcher
 						
 	}
 	while(!"4".equals(UserOption));
-}	
+	
 	
 	
 	private static void end(Scanner scanner)
@@ -62,7 +73,7 @@ public class Launcher
 	}
 
 
-	private static boolean authenticate(Scanner scanner2)
+	private static boolean authenticate (Scanner scanner2)
 	{
 		// TODO Auto-generated method stub
 		return false;
