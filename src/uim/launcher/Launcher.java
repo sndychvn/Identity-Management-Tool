@@ -7,11 +7,12 @@ import java.util.Scanner;
 
 public class Launcher 
 {
-
-	System.out.println("Welcome! /nYou are in the User Management Tool");
-	Scanner scanner = new Scanner(System.in);
+	System.out.println("Welcome!");
+	System.out.println("/nYou are using the User Identity Management Tool");	
+	static Scanner scanner = new Scanner(System.in);
+	private static boolean res = (!authenticate(scanner)){};
 	
-	if(!authenticate(scanner))
+	if(res)
 	{
 		System.out.println("You are logged in successfully");
 		end(scanner);
@@ -59,7 +60,15 @@ public class Launcher
 		System.out.println("Thank you for using the tool! Good Bye");
 		scanner.close();
 	}
+
+
+	private static boolean authenticate(Scanner scanner2)
+	{
+		// TODO Auto-generated method stub
+		return false;
+	}
 	
 	//need to add code for authentication
 	
+}
 }
