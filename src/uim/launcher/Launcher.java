@@ -48,9 +48,11 @@ public class Launcher
 		{
 			System.out.println("Invalid input provided. Please retry with the correct option");
 		}
-		while(!"4".equals(UserOption));
-		
+						
 	}
+	while(!"4".equals(UserOption));
+}	
+	
 	
 	private static void end(Scanner scanner)
 	{
