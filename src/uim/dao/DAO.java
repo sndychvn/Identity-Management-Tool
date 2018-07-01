@@ -9,14 +9,14 @@ import uim.exceptions.UserSearchException;
 import uim.exceptions.UserUpdateException;
 import uim.inputparameters.InputParameters;
 
-public interface DAO 
+public interface DAO
 {
 		
-		public <T> void CreateOperation(T entity) throws UserCreationException;
+		public <T> void CreateUserIDentity(T entity) throws UserCreationException;
 
-		public <T> void DeleteOperation(T entity) throws UserDeletionException;
+		public <T> void DeleteUserIdentity(T entity) throws UserDeletionException;
 
-		public <T> void UpdateOperation(T entity) throws UserUpdateException;
+		public <T> void UpdateUserIdentity(T entity) throws UserUpdateException;
 
 		public InputParameters getById(Serializable id) throws UserReadException;
 

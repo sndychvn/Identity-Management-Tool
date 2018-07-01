@@ -30,7 +30,7 @@ public class Launcher
 		System.out.println("Please select the activity you need to perform: ");
 		System.out.println("Choose: 1 2 3 4 5 ");
 		System.out.println("1. Create a User Identity");
-		System.out.println("2. Read an existing User Identity");
+		System.out.println("2. Read/Search an existing User Identity");
 		System.out.println("3. Modify an existing User Identity");
 		System.out.println("4. Delete an existing User Identity");
 		System.out.println("5. Delete an existing User from the tool");
