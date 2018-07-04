@@ -9,7 +9,7 @@ public enum ConfigureKey {
 	DB_BACKEND("db"),
 	IDENTITY_SEARCH_QUERY("identity.search"),
 	IDENTITY_INSERT_QUERY("identity.insert"),
-	XML_BACKEND_FILE("xml.file"),;
+	;
 
 	private String key;
 	private ConfigureKey(String key) {

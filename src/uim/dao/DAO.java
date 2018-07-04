@@ -12,7 +12,7 @@ import uim.inputparameters.InputParameters;
 public interface DAO
 {
 		
-		public <T> void CreateUserIDentity(T entity) throws UserCreationException;
+		public <T> void CreateUserIdentity(T entity) throws UserCreationException;
 
 		public <T> void DeleteUserIdentity(T entity) throws UserDeletionException;
 
