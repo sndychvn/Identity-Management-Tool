@@ -41,7 +41,7 @@ public class IdentityDao implements DAO{
 	public void CreateOperation(Identity entity) throws UserCreationException {
 
 		try {
-		      String query = "Insert into Identity (userName, userID, dateOfBirth, emailID, country) values"
+		      String query = "Insert into Identities (userName, userID, dateOfBirth, emailID, country) values"
 		        + " (?, ?, ?, ?, ?)";
 
 		      PreparedStatement preparedStmt = con.prepareStatement(query);
@@ -69,14 +69,19 @@ public class IdentityDao implements DAO{
 	@Override
 	public void DeleteOperation(String userId) throws UserDeletionException {
  
-		String sql = "delete from Identity where userID ="+userId;
+		String sql = "delete from Identities where userID ='"+userId+"'";
 
 		try {
 			Statement stmt=con.createStatement();
 			
-			stmt.execute(sql);
-			
-			
+			int deleted = stmt.executeUpdate(sql);
+			if(deleted == 0) {
+				System.out.println("No records to delete");
+			}
+			else
+			{
+				System.out.println("Record deleted successfully");
+			}
 		} catch (SQLException e) {
 		
 			e.printStackTrace();
@@ -92,10 +97,10 @@ public class IdentityDao implements DAO{
 
 
 		try {
-		      String query = "Update Identity SET dateOfBirth = ?, emailID = ?, country = ? where userName = ? and userID = ?";
+		      String query = "Update Identities SET dateOfBirth = ?, emailID = ?, country = ? where userName = ? and userID = ?";
 		        
 
-		      // create sql insert preparedstatement
+		      // create the mysql insert preparedstatement
 		      PreparedStatement preparedStmt = con.prepareStatement(query);
 		      preparedStmt.setString (4, entity.getUserName());
 		      preparedStmt.setString (5, entity.getUserID());
@@ -118,17 +123,21 @@ public class IdentityDao implements DAO{
 	@Override
 	public Identity getById(String id) throws UserReadException {
  
-		Identity myResult;
-		String sql = "Select * from Identity where userID = "+id;
+		Identity myResult=null;
+		String sql = "Select * from Identities where userID = '"+id+"'";
 
 		try {
 			Statement stmt=con.createStatement();
 			
 			ResultSet set = stmt.executeQuery(sql);
 			System.out.println(set);
-			set.next();
+			boolean res = set.next();
+			if(res)
 			myResult = new Identity(set.getString(1), set.getString(2), set.getString(3), set.getString(4), set.getString(5));
-				
+			else
+			{
+				System.out.println("Incorrect User ID provided!");
+			}
 			
 		} catch (SQLException e) {
 		
@@ -144,13 +153,12 @@ public class IdentityDao implements DAO{
 	@Override
 	public List<Identity> search() throws UserSearchException {
 
-		String sql = "Select * from Identity";
+		String sql = "Select * from Identities";
 
 		List<Identity> result = new ArrayList<Identity>();
 		try{
 		Statement st = con.createStatement();
 		ResultSet rs = st.executeQuery(sql);
-		ResultSetMetaData rsmd = rs.getMetaData();
 		Identity val = null;
 		// Iterate through the data in the result set and display it. 
 

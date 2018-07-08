@@ -52,10 +52,5 @@ public boolean isLoggedIN()
 		return LoggedIN;
 }
 
-private String getLogonPasscode(String user)
-{
-		//need to be written
-}
-
 }
 

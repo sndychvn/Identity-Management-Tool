@@ -1,85 +1,160 @@
 package uim.launcher;
 
-import java.io.IOException;
-import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.Scanner;
 
-import uim.operation.CreateUserIdentity;
-import uim.operation.DeleteUserIdentity;
-import uim.operation.ReadUserIdentity;
-import uim.operation.UpdateUserIdentity;
+import uim.dao.AdministrationDao;
+import uim.dao.IdentityDao;
+import uim.datamodel.Identity;
+import uim.exceptions.UserCreationException;
+import uim.exceptions.UserDeletionException;
+import uim.exceptions.UserReadException;
+import uim.exceptions.UserSearchException;
+import uim.exceptions.UserUpdateException;
 
 public class Launcher 
 {
-	System.out.println("Welcome!");
-	System.out.println("/nYou are using the User Identity Management Tool");	
-	static Scanner scanner = new Scanner(System.in);
-	private static boolean res = (!authenticate(scanner)){};
-	
-	if(res)
-	{
-		System.out.println("You are logged in successfully");
-		end(scanner);
-		return;
-	}
-	
-	String UserOption;
-	do
-	{
-		System.out.println("Please select the activity you need to perform: ");
-		System.out.println("Choose: 1 2 3 4 5 ");
-		System.out.println("1. Create a User Identity");
-		System.out.println("2. Read/Search an existing User Identity");
-		System.out.println("3. Modify an existing User Identity");
-		System.out.println("4. Delete an existing User Identity");
-		System.out.println("5. Delete an existing User from the tool");
-		UserOption = scanner.nextLine();
-		
-		if(UserOption.equals("1"))
-		{
-			CreateUserIdentity.execute(scanner);
-		}
-		else if(UserOption.equals("2"))
-		{
-			UpdateUserIdentity.execute(scanner);
-		}
-		else if(UserOption.equals("3"))
-		{
-			ReadUserIdentity.execute(scanner);
-		}
-		else if(UserOption.equals("4"))
-		{
-			DeleteUserIdentity.execute(scanner);
-		}
-		else if(UserOption.equals("5"))
-		{
-			//need to write db code
-		}
-		else
-		{
-			System.out.println("Invalid input provided. Please retry with the correct option");
-		}
-						
-	}
-	while(!"4".equals(UserOption));
-	
-	
-	
-	private static void end(Scanner scanner)
-	{
-		System.out.println("Thank you for using the tool! Good Bye");
-		scanner.close();
-	}
 
 
-	private static boolean authenticate (Scanner scanner2)
-	{
-		// TODO Auto-generated method stub
-		return false;
+	public static void main(String[] args) throws UserCreationException{
+		@SuppressWarnings("resource")
+		Scanner scanner = new Scanner(System.in);
+
+		String UserOption;
+		String userChoice;
+		System.out.println("\nWelcome to the Identity Management System\n");
+		System.out.println("Please enter admin credentials to gain access\n");
+		System.out.println("USERNAME: ");
+		String adminID=scanner.nextLine();
+		System.out.println("PASSWORD: ");
+		String pass = scanner.nextLine();
+
+		boolean session = AdministrationDao.getAccess(adminID, pass);
+		if(session) {
+			System.out.println("Thanks for loggining in\n\nWelcome to the System\n\n");
+			do
+			{
+				System.out.println("\nPlease select the activity you need to perform: ");
+				System.out.println("Choose: 1 2 3 4 5 6 ");
+				System.out.println("1. Create a User Identity");
+				System.out.println("2. Read an existing User");
+				System.out.println("3. Display all users");
+				System.out.println("4. Modify an existing User Identity");
+				System.out.println("5. Delete an existing User Identity");
+				System.out.println("6. Exit");
+
+				UserOption = scanner.nextLine();
+
+				if(UserOption.equals("1"))
+				{
+					//Create user option
+					IdentityDao dao = new IdentityDao();
+					System.out.println("Enter the username: ");
+					String username = scanner.nextLine();
+					System.out.println("Enter the user id: ");
+					String userID = scanner.nextLine();
+					System.out.println("Enter the date of birth: ");
+					String dob = scanner.nextLine();
+					System.out.println("Enter the email ID: ");
+					String email = scanner.nextLine();
+					System.out.println("Enter the country: ");
+					String country = scanner.nextLine();
+					Identity user = new Identity(username, userID,dob,email,country);
+					dao.CreateOperation(user);
+				}
+				else if(UserOption.equals("2"))
+				{
+					//read a particular user 
+					IdentityDao dao = new IdentityDao();
+					try {
+						System.out.println("Enter the userID to search: ");
+						String userID = scanner.nextLine();
+						Identity user = dao.getById(userID);
+						if(user!= null)
+						{
+							System.out.println("User ID\tUser Name\tEmail ID\tDate Of Birth\tCountry");
+							System.out.println(user.getUserID() + "\t" + user.getUserName() + "\t\t" + user.getEmailID() + "\t\t"
+									+ user.getDateOfBirth() + "\t" + user.getCountry());
+						} 
+					}
+					catch (UserReadException e) {
+						e.printStackTrace();
+					}
+				}
+				else if(UserOption.equals("3"))
+				{
+					//display all users
+					IdentityDao dao = new IdentityDao();
+					try {
+						List<Identity> resultList = dao.search();
+						System.out.println("User ID\tUser Name\t\tEmail ID\tDate Of Birth\tCountry");
+						for(Identity result : resultList)
+						{
+							System.out.println(result.getUserID() + "\t" + result.getUserName() + "\t\t" + result.getEmailID() + "\t\t"
+									+ result.getDateOfBirth() + "\t" + result.getCountry());
+						}
+
+					} catch (UserSearchException e) {
+						e.printStackTrace();
+					}
+
+
+				}
+				else if(UserOption.equals("4"))
+				{
+					//modify an existing user
+					IdentityDao dao = new IdentityDao();
+					System.out.println("Enter the username & user ID to modify: ");
+					String username = scanner.nextLine();
+					String userID = scanner.nextLine();
+					System.out.println("Enter the new date of birth: ");
+					String dob = scanner.nextLine();
+					System.out.println("Enter the new email ID: ");
+					String email = scanner.nextLine();
+					System.out.println("Enter the new country: ");
+					String country = scanner.nextLine();
+					Identity old = new Identity(username, userID,dob,email,country);
+					try {
+						dao.UpdateOperation(old);
+					} catch (UserUpdateException e) {
+						e.printStackTrace();
+					}
+				}
+				else if(UserOption.equals("5"))
+				{
+					//delete an existing user
+					IdentityDao dao = new IdentityDao();
+					try {
+						System.out.println("Enter the userID to delete: ");
+						String userID = scanner.nextLine();
+						dao.DeleteOperation(userID);
+					} catch (UserDeletionException e) {
+						e.printStackTrace();
+					}
+				}
+				else if(UserOption.contentEquals("6"))
+				{
+					//exit from application
+					System.out.println("Thanks for using Identity Management tool!!!");
+					System.out.println("Exiting!!!");
+					System.exit(0);
+				}
+				else 
+				{
+					System.out.println("Invalid input provided. Please retry with the correct option");
+				}
+				System.out.println("\n\n\nDo you wish to continue (y/n)");
+				userChoice = scanner.nextLine().toLowerCase();
+
+			}
+			while(!"n".equals(userChoice));
+			System.out.println("Thanks for using Identity Management tool!!!");
+			System.out.println("To perform any acivities on UIM, you need to relaunch the tool");
+			System.out.println("Bye....!");
+		}
+		else {
+			System.out.println("Sorry!!! You don't have permissions to access the Identity Management System");
+			System.out.println("Please contact your admin for details!!!");
+		}
 	}
-	
-	//need to add code for authentication
-	
-}
 }
