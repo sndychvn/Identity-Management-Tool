@@ -1,26 +1,26 @@
 package uim.dao;
-import java.io.Serializable;
+
 import java.util.List;
 
+import uim.datamodel.Identity;
 import uim.exceptions.UserCreationException;
 import uim.exceptions.UserDeletionException;
 import uim.exceptions.UserReadException;
 import uim.exceptions.UserSearchException;
 import uim.exceptions.UserUpdateException;
-import uim.inputparameters.InputParameters;
 
-public interface DAO
+public interface DAO 
 {
 		
-		public <T> void CreateUserIdentity(T entity) throws UserCreationException;
+		public void CreateOperation(Identity entity) throws UserCreationException;
 
-		public <T> void DeleteUserIdentity(T entity) throws UserDeletionException;
+		public void DeleteOperation(String userId) throws UserDeletionException;
 
-		public <T> void UpdateUserIdentity(T entity) throws UserUpdateException;
+		public void UpdateOperation(Identity entity) throws UserUpdateException;
 
-		public InputParameters getById(Serializable id) throws UserReadException;
+		public Identity getById(String id) throws UserReadException;
 
-		public <T> List<InputParameters> search(T criteria) throws UserSearchException;
+		public List<Identity> search() throws UserSearchException;
 }
 
 
