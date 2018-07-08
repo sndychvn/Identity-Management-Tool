@@ -1,3 +1,3 @@
 
 
-INSERT INTO ADMINISTRATION (adminID, pass) VALUES ("admin", "admin123");
+INSERT INTO ADMINISTRATION (adminID, pass) VALUES ('admin', 'admin123');

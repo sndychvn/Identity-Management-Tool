@@ -32,6 +32,7 @@ public class Launcher
 		boolean session = AdministrationDao.getAccess(adminID, pass);
 		if(session) {
 			System.out.println("Thanks for loggining in\n\nWelcome to the System\n\n");
+			System.out.println("Please wait! Loading................");
 			do
 			{
 				System.out.println("\nPlease select the activity you need to perform: ");

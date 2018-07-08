@@ -1,6 +1,4 @@
-
-identity.search=select IDENTITY_USERNAME, IDENTITY_USERID, IDENTITY_EMAILID, IDENTITY_DATEOFBIRTH, IDENTITY_COUNTRY from IDENTITIES where IDENTITY_DISPLAYNAME like ? or IDENTITY_EMAIL like ?
-identity.insert=INSERT INTO IDENTITIES (IDENTITY_USERNAME, IDENTITY_USERID, IDENTITY_EMAILID, IDENTITY_DATEOFBIRTH, IDENTITY_COUNTRY) VALUES (?, ?, ?, ?, ?)
-db.url=jdbc:derby://localhost:1527/testInstance;create=true
-db.user=test
-db.pwd=test
+USERNAME=test
+PASSWORD=test
+URL=jdbc:derby://localhost:1527/sample;create=true
+CLASS_NAME=org.apache.derby.jdbc.ClientDriver
