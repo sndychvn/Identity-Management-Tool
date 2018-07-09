@@ -18,7 +18,7 @@ public class Launcher
 
 	public static void main(String[] args) throws UserCreationException{
 		@SuppressWarnings("resource")
-		Scanner scanner = new Scanner(System.in);
+	//	Scanner scanner = new Scanner(System.in);
 
 		String UserOption;
 		String userChoice;

@@ -13,7 +13,7 @@ public class AdministrationDao {
 	static boolean session = false;
 	static Connection con = getDaoConnection();
 	
-	static Connection getDaoConnection() {
+	//static Connection getDaoConnection() {
 		try {
 			try {
 				con = DatabaseConnection.getConnection();
