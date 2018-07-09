@@ -19,7 +19,7 @@ import java.sql.PreparedStatement;
 			pstmt.execute();
 			pstmt.close();
 			connection.close();
-		}
+		}	
 		
 				
 		private static Connection getConnection() throws SQLException
