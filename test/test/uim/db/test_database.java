@@ -13,9 +13,7 @@ import java.sql.PreparedStatement;
 			final PreparedStatement pstmt = connection.prepareStatement("INSERT INTO IDENTITIES (IDENTITY_USERNAME, IDENTITY_USERID, IDENTITY_EMAILID,IDENTITY_COUNTRY,IDENTITY_DATEOFBIRTH) VALUES (?, ?, ?, ?, ?)");
 			pstmt.setString(1, "Antoine Griezmann");
 			pstmt.setString(2, "Francais");
-			pstmt.setString(3, "griezmann@gmail.com");
-			pstmt.setString(4, "Francais");
-			pstmt.setString(5, "March 21 1991");
+			
 			pstmt.execute();
 			pstmt.close();
 			connection.close();
