@@ -37,7 +37,7 @@ public class DatabaseConnection
 		super();
 		this.url = url;
 	}
-	//Logger logger = Logger.getLogger(YourClass.class.getName());
+
 	public static Connection getConnection() throws IOException, ClassNotFoundException{
 		
 		try {
@@ -50,8 +50,7 @@ public class DatabaseConnection
 				Class.forName(prop.getProperty("CLASS_NAME")).newInstance();
 			} catch (InstantiationException | IllegalAccessException e) {
 				e.printStackTrace();
-			//} catch (IllegalAccessException e) {
-			//	e.printStackTrace();
+
 			}
 			con=DriverManager.getConnection(  
 					prop.getProperty("URL"),prop.getProperty("USERNAME"),prop.getProperty("PASSWORD"));
