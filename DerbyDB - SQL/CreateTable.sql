@@ -5,7 +5,3 @@ dateOfBirth varchar(30) NOT NULL,
 emailID varchar(30) NOT NULL,
 country varchar(30) NOT NULL);
 
-CREATE TABLE ADMINISTRATION (
-adminID VARCHAR(30) NOT NULL,
-pass VARCHAR(30) NOT NULL);
-

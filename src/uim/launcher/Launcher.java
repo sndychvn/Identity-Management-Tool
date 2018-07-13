@@ -12,15 +12,31 @@ import uim.exceptions.UserReadException;
 import uim.exceptions.UserSearchException;
 import uim.exceptions.UserUpdateException;
 
+/**
+ * <h3>Description</h3>
+ * <p>This class allows to run the main method of the program and give comments/main menu for the user while running the program</p>
+ *
+ * <h3>Usage</h3>
+ * <p>This class should be used as follows:
+ *   <pre><code>${type_name} instance = new ${type_name}();</code></pre>
+ * </p>
+ *
+ * @since $${version}
+ * @see See also $${link}
+ * @author ${user}
+ *
+ * ${tags}
+ */
+
 public class Launcher 
 {
 
 
 	public static void main(String[] args) throws UserCreationException{
 		@SuppressWarnings("resource")
-	//	Scanner scanner = new Scanner(System.in);
+	Scanner scanner = new Scanner(System.in);
 
-		String UserOption;
+		String User_Option;
 		String userChoice;
 		System.out.println("\nWelcome to the Identity Management System\n");
 		System.out.println("Please enter admin credentials to gain access\n");
@@ -44,9 +60,9 @@ public class Launcher
 				System.out.println("5. Delete an existing User Identity");
 				System.out.println("6. Exit");
 
-				UserOption = scanner.nextLine();
+				User_Option = scanner.nextLine();
 
-				if(UserOption.equals("1"))
+				if(User_Option.equals("1"))
 				{
 					//Create user option
 					IdentityDao dao = new IdentityDao();
@@ -62,8 +78,9 @@ public class Launcher
 					String country = scanner.nextLine();
 					Identity user = new Identity(username, userID,dob,email,country);
 					dao.CreateOperation(user);
+					System.out.println("Record saved successfully! ");
 				}
-				else if(UserOption.equals("2"))
+				else if(User_Option.equals("2"))
 				{
 					//read a particular user 
 					IdentityDao dao = new IdentityDao();
@@ -73,7 +90,7 @@ public class Launcher
 						Identity user = dao.getById(userID);
 						if(user!= null)
 						{
-							System.out.println("User ID\tUser Name\tEmail ID\tDate Of Birth\tCountry");
+							System.out.println("User ID\tUser Name\t\t\tEmail ID\t\t\tDate Of Birth\tCountry");
 							System.out.println(user.getUserID() + "\t" + user.getUserName() + "\t\t" + user.getEmailID() + "\t\t"
 									+ user.getDateOfBirth() + "\t" + user.getCountry());
 						} 
@@ -82,13 +99,13 @@ public class Launcher
 						e.printStackTrace();
 					}
 				}
-				else if(UserOption.equals("3"))
+				else if(User_Option.equals("3"))
 				{
 					//display all users
 					IdentityDao dao = new IdentityDao();
 					try {
 						List<Identity> resultList = dao.search();
-						System.out.println("User ID\tUser Name\t\tEmail ID\tDate Of Birth\tCountry");
+						System.out.println("User ID\tUser Name\t\t\tEmail ID\t\t\tDate Of Birth\t\t\tCountry");
 						for(Identity result : resultList)
 						{
 							System.out.println(result.getUserID() + "\t" + result.getUserName() + "\t\t" + result.getEmailID() + "\t\t"
@@ -101,7 +118,7 @@ public class Launcher
 
 
 				}
-				else if(UserOption.equals("4"))
+				else if(User_Option.equals("4"))
 				{
 					//modify an existing user
 					IdentityDao dao = new IdentityDao();
@@ -121,7 +138,7 @@ public class Launcher
 						e.printStackTrace();
 					}
 				}
-				else if(UserOption.equals("5"))
+				else if(User_Option.equals("5"))
 				{
 					//delete an existing user
 					IdentityDao dao = new IdentityDao();
@@ -133,7 +150,7 @@ public class Launcher
 						e.printStackTrace();
 					}
 				}
-				else if(UserOption.contentEquals("6"))
+				else if(User_Option.contentEquals("6"))
 				{
 					//exit from application
 					System.out.println("Thanks for using Identity Management tool!!!");

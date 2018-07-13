@@ -1,6 +1,22 @@
 package uim.security;
 import java.sql.*;
 
+/**
+ * <h3>Description</h3>
+ * <p>This class allows to get the User ID and password from the user and check if provide required comments on the UI for the user</p>
+ *
+ * <h3>Usage</h3>
+ * <p>This class should be used as follows:
+ *   <pre><code>${type_name} instance = new ${type_name}();</code></pre>
+ * </p>
+ *
+ * @since $${version}
+ * @see See also $${link}
+ * @author ${user}
+ *
+ * ${tags}
+ */
+
 public class UserAuthentication {
 	
 	private String Logon;

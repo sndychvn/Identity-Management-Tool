@@ -8,12 +8,28 @@ import java.sql.Statement;
 
 import uim.connection.DatabaseConnection;
 
+/**
+ * <h3>Description</h3>
+ * <p>This class allows to validate the user credentials for initial logon into the application from the Table 'Administration'</p>
+ *
+ * <h3>Usage</h3>
+ * <p>This class should be used as follows: Connects to the database and then validates the credentials entered for the user
+ *   <pre><code>${type_name} instance = new ${type_name}();</code></pre>
+ * </p>
+ *
+ * @since $${version}
+ * @see See also $${link}
+ * @author ${user}
+ *
+ * ${tags}
+ */
+
 public class AdministrationDao {
 	
 	static boolean session = false;
 	static Connection con = getDaoConnection();
 	
-	//static Connection getDaoConnection() {
+	static Connection getDaoConnection() {
 		try {
 			try {
 				con = DatabaseConnection.getConnection();
@@ -34,7 +50,6 @@ public class AdministrationDao {
 			Statement stmt=con.createStatement();
 			
 			ResultSet set = stmt.executeQuery(sql);
-			//System.out.println(set);
 			boolean ans = set.next();
 			if(ans) session = true;
 		

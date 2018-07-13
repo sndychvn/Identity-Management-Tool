@@ -1,7 +1,21 @@
 package uim.inputparameters;
 
 import java.util.Map;
-
+/**
+ * <h3>Description</h3>
+ * <p>This class allows to get the input varaibles from the user</p>
+ *
+ * <h3>Usage</h3>
+ * <p>This class should be used as follows:
+ *   <pre><code>${type_name} instance = new ${type_name}();</code></pre>
+ * </p>
+ *
+ * @since $${version}
+ * @see See also $${link}
+ * @author ${user}
+ *
+ * ${tags}
+ */
 public class InputParameters 
 {
 	private String UserName;
@@ -17,7 +31,8 @@ public class InputParameters
 		this.UserID = UserID;
 		this.DateofBirth = DateofBirth;
 		this.EmailID = EmailID;
-		this.EmailID = EmailID;
+		this.Country = Country;
+		
 	}
 
 	/**#public InputParameters()

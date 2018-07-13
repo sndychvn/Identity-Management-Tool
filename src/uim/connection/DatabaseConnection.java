@@ -22,6 +22,7 @@ public class DatabaseConnection
 		super();
 		this.url = url;
 	}
+	//Logger logger = Logger.getLogger(YourClass.class.getName());
 	public static Connection getConnection() throws IOException, ClassNotFoundException{
 		
 		try {
@@ -32,17 +33,17 @@ public class DatabaseConnection
 			prop.load(input);
 			try {
 				Class.forName(prop.getProperty("CLASS_NAME")).newInstance();
-			} catch (InstantiationException e) {
+			} catch (InstantiationException | IllegalAccessException e) {
 				e.printStackTrace();
-			} catch (IllegalAccessException e) {
-				e.printStackTrace();
+			//} catch (IllegalAccessException e) {
+			//	e.printStackTrace();
 			}
 			con=DriverManager.getConnection(  
 					prop.getProperty("URL"),prop.getProperty("USERNAME"),prop.getProperty("PASSWORD"));
 		
 		} catch (SQLException e) {
-		
 			e.printStackTrace();
+			
 		}  
 			 
 		return con; 
